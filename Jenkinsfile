@@ -1,3 +1,4 @@
+
 #Declarativepipeline
 pipeline {
 agent any
@@ -6,7 +7,7 @@ agent any
       steps {
          checkout scm: [
                     $class: 'GitSCM',
-                    branches: [[name: '*/main']],
+                    branches: [[name: '*/master']],
                     userRemoteConfigs: [[url: 'https://github.com/hemanthgowdam/pipeline-examples.git']]
                 ], lightweight: true
 
@@ -14,7 +15,7 @@ agent any
         }
   stage (Build) {
     steps { 
-        sh 'mvn test'
+        sh 'mvn build'
       }
     }
   stage (Test) {
@@ -22,13 +23,15 @@ agent any
         sh 'mvn test'
       }
     }
-stage (posttest) {
+stage (Posttest) {
     steps (success) {
         echo "Pipeline is completed"
     }
     steps (failure) {
         echo "pipeline is failed"
       }
+    }
   }
 }
+
     
