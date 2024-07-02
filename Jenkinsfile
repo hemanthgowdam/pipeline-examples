@@ -1,4 +1,3 @@
-#Declarativepipeline
 pipeline {
   agent any
   stages {
