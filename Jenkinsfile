@@ -1,37 +1,38 @@
-
 #Declarativepipeline
 pipeline {
-agent any
+  agent any
   stages {
-    stage(SCMGithub){
+    stage(SCMGithub) {
       steps {
-         checkout scm: [
-                    $class: 'GitSCM',
-                    branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'https://github.com/hemanthgowdam/pipeline-examples.git']]
-                ], lightweight: true
+        checkout scm: [
+          $class: 'GitSCM',
+          branches: [
+            [name: '*/master']
+          ],
+          userRemoteConfigs: [
+            [url: 'https://github.com/hemanthgowdam/pipeline-examples.git']
+          ]
+        ], lightweight: true
 
-            }
-        }
-  stage (Build) {
-    steps { 
+      }
+    }
+    stage(Build) {
+      steps {
         sh 'mvn build'
       }
     }
-  stage (Test) {
-    steps {
+    stage(Test) {
+      steps {
         sh 'mvn test'
       }
     }
-stage (Posttest) {
-    steps (success) {
+    stage(Posttest) {
+      steps(success) {
         echo "Pipeline is completed"
-    }
-    steps (failure) {
+      }
+      steps(failure) {
         echo "pipeline is failed"
       }
     }
   }
 }
-
-    
