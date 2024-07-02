@@ -1,4 +1,4 @@
-#Declarative pipeline
+#Declarativepipeline
 pipeline {
 agent any
   stages {
@@ -22,7 +22,7 @@ agent any
         sh 'mvn test'
       }
     }
-stage (post test) {
+stage (posttest) {
     steps (success) {
         echo "Pipeline is completed"
     }
