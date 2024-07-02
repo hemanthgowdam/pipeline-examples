@@ -1,8 +1,8 @@
-# Declarative pipeline
+#Declarative pipeline
 pipeline {
 agent any
   stages {
-    stage(SCM-Github){
+    stage(SCMGithub){
       steps {
          checkout scm: [
                     $class: 'GitSCM',
