@@ -12,7 +12,7 @@ pipeline {
                     // Perform lightweight checkout from GitHub
                     checkout([
                         $class: 'GitSCM',
-                        branches: [[name: '*/main']],
+                        branches: [[name: '*/master']],
                         doGenerateSubmoduleConfigurations: false,
                         extensions: [[sparseCheckoutPaths: [[path: 'Jenkinsfile']]]], // Only checkout Jenkinsfile initially
                         submoduleCfg: [],
